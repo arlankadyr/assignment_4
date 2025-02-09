@@ -1,44 +1,33 @@
-import java.util.ArrayList;
-import java.util.List;
+package com.bankingsystem.models;
 
-
-
-
-class Branch {
+public class Branch {
+    private int id;
     private String name;
-    private Bank bank;
-    private List<Deposit> deposits = new ArrayList<>();
+    private int bankId;
 
-    public Branch(String name, Bank bank) {
+    // Полный конструктор
+    public Branch(int id, String name, int bankId) {
+        this.id = id;
         this.name = name;
-        this.bank = bank;
+        this.bankId = bankId;
     }
 
-    public String getName() {
-        return name;
+    // Конструктор без ID (для создания нового филиала)
+    public Branch(String name, int bankId) {
+        this.name = name;
+        this.bankId = bankId;
     }
 
-    public Bank getBank() {
-        return bank;
-    }
+    public int getId() { return id; }
+    public String getName() { return name; }
+    public int getBankId() { return bankId; }
 
-    public List<Deposit> getDeposits() {
-        return deposits;
-    }
+    public void setId(int id) { this.id = id; }
+    public void setName(String name) { this.name = name; }
+    public void setBankId(int bankId) { this.bankId = bankId; }
 
-    public void addDeposit(Deposit deposit) {
-        deposits.add(deposit);
-    }
-
-    public void removeDeposit(Deposit deposit) {
-        deposits.remove(deposit);
-    }
-
-    public double getTotalDepositAmount() {
-        double total = 0;
-        for (Deposit deposit : deposits) {
-            total += deposit.getDepositAmount();
-        }
-        return total;
+    @Override
+    public String toString() {
+        return "🏢 " + id + ": " + name + " (Банк ID: " + bankId + ")";
     }
 }

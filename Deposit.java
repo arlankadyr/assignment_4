@@ -1,29 +1,39 @@
-class Deposit {
-    private String depositorName;
-    private double depositAmount;
-    private Branch branch;
+package com.bankingsystem.models;
 
-    public Deposit(String depositorName, double depositAmount, Branch branch) {
-        this.depositorName = depositorName;
-        this.depositAmount = depositAmount;
-        this.branch = branch;
+public class Deposit {
+    private int id;
+    private double amount;
+    private int branchId;
+    private int depositorId;
+
+    // Полный конструктор
+    public Deposit(int id, double amount, int branchId, int depositorId) {
+        this.id = id;
+        this.amount = amount;
+        this.branchId = branchId;
+        this.depositorId = depositorId;
     }
 
-    public String getDepositorName() {
-        return depositorName;
+    // Конструктор без ID (для добавления в базу)
+    public Deposit(double amount, int branchId, int depositorId) {
+        this.amount = amount;
+        this.branchId = branchId;
+        this.depositorId = depositorId;
     }
 
-    public double getDepositAmount() {
-        return depositAmount;
-    }
+    public int getId() { return id; }
+    public double getAmount() { return amount; }
+    public int getBranchId() { return branchId; }
+    public int getDepositorId() { return depositorId; }
 
-    public Branch getBranch() {
-        return branch;
-    }
+    public void setId(int id) { this.id = id; }
+    public void setAmount(double amount) { this.amount = amount; }
+    public void setBranchId(int branchId) { this.branchId = branchId; }
+    public void setDepositorId(int depositorId) { this.depositorId = depositorId; }
 
-    public void replenishAccount(double amount) {
-        if (amount > 0) {
-            this.depositAmount += amount;
-        }
+    @Override
+    public String toString() {
+        return "Deposit ID: " + id + ", Amount: " + amount +
+                ", Branch ID: " + branchId + ", Depositor ID: " + depositorId;
     }
 }

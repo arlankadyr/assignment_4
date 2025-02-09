@@ -1,34 +1,28 @@
-import java.util.ArrayList;
-import java.util.List;
+package com.bankingsystem.models;
 
-class Bank {
+public class Bank {
+    private int id;
     private String name;
-    private List<Branch> branches = new ArrayList<>();
 
+    // Полный конструктор
+    public Bank(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    // Конструктор без ID (для создания нового банка)
     public Bank(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
+    public int getId() { return id; }
+    public String getName() { return name; }
 
-    public List<Branch> getBranches() {
-        return branches;
-    }
+    public void setId(int id) { this.id = id; }
+    public void setName(String name) { this.name = name; }
 
-    public void addBranch(Branch branch) {
-        branches.add(branch);
-    }
-
-    public Deposit findDepositByName(String depositorName) {
-        for (Branch branch : branches) {
-            for (Deposit deposit : branch.getDeposits()) {
-                if (deposit.getDepositorName().equals(depositorName)) {
-                    return deposit;
-                }
-            }
-        }
-        return null;
+    @Override
+    public String toString() {
+        return "🏦 " + id + ": " + name;
     }
 }
